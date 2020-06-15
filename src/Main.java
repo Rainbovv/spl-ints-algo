@@ -3,7 +3,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
-        ArrayList<Double> temps = (ArrayList<Double>)getListOfRandomDoubles(31, -25.0, 25.0);
+        List<Double> temps = (ArrayList<Double>)getListOfRandomDoubles(31, -25.0, 25.0);
 
 
         printList(temps);
