@@ -6,23 +6,26 @@ public class Main {
         ArrayList<Double> temps = (ArrayList<Double>)getListOfRandomDoubles(31, - 25.0,25.0);
 
 
-        printTemps(temps);
+        printList(temps);
     }
 
 
-    static void printTemps(List<?> toPrint) {
+    static void printList(List<Double> list) {
 
         System.out.println("\n###################################################");
         System.out.print("       mo     tu     we     th     fi     sa     su");
 
-        for (int i = 0,  j = 1; i < toPrint.size(); i++) {
+        for (int i = 0,  j = 1; i < list.size(); i++) {
             if ( i == 0 || i % 7 == 0) {
                 System.out.printf("%n%d.", j++);
             }
-            System.out.printf("%7.1f", toPrint.get(i));
+            System.out.printf("%7.1f", list.get(i));
         }
 
-        System.out.println("\n###################################################");
+        System.out.println("\n###################################################\n");
+        System.out.printf("The min temperature:%10.1f%n" , minTemp(list));
+        System.out.printf("The max temperature:%10.1f%n" , maxTemp(list));
+        System.out.printf("The average temperature:%6.1f%n" , averageTemp(list));
     }
 
 
@@ -38,10 +41,47 @@ public class Main {
         return result;
     }
 
+
     static double roundAvoid(double value, int places) {
 
         double scale = Math.pow(10, places);
 
         return Math.round(value * scale) / scale;
+    }
+
+
+    static double minTemp(List<Double> list) {
+
+        double min = list.get(0);
+
+        for (double temp: list) {
+            if (temp < min) min = temp;
+        }
+
+        return min;
+    }
+
+
+    static double maxTemp(List<Double> list) {
+
+        double max = list.get(0);
+
+        for (double temp: list) {
+            if (temp > max) max = temp;
+        }
+
+        return max;
+    }
+
+
+    static double averageTemp(List<Double> list) {
+
+        double sum = 0;
+
+        for (double temp: list) {
+            sum += temp;
+        }
+
+        return roundAvoid(sum / list.size(),1);
     }
 }
